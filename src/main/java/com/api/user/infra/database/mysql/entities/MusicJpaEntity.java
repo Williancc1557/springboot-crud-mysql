@@ -9,7 +9,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
 public class MusicJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
