@@ -1,13 +1,15 @@
-package com.api.user.model.entities.mysql;
+package com.api.user.infra.database.mysql.entities;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor
 public class MusicJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
