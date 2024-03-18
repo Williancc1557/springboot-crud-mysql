@@ -4,7 +4,9 @@ import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
 import com.api.user.model.usecase.music.Music;
 import com.api.user.model.usecase.music.MusicInput;
 import com.api.user.service.protocols.MusicRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DbMusic implements Music {
     private MusicRepository musicRepository;
 
