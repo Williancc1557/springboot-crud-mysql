@@ -1,4 +1,4 @@
-package com.api.user.controller.dto;
+package com.api.user.dto;
 
 public class AddMusicDto {
     public String title;

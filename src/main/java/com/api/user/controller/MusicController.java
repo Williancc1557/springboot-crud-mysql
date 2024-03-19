@@ -1,7 +1,6 @@
 package com.api.user.controller;
 
-import com.api.user.controller.dto.AddMusicDto;
-import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
+import com.api.user.dto.AddMusicDto;
 import com.api.user.model.usecase.music.Music;
 import com.api.user.model.usecase.music.MusicInput;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/music")
 public class MusicController {
     private final Music dbMusic;
 
@@ -18,7 +17,7 @@ public class MusicController {
         this.dbMusic = dbMusic;
     }
 
-    @PostMapping("/music")
+    @PostMapping()
     void addMusic(@RequestBody() AddMusicDto music) {
         MusicInput.AddMusic input = new MusicInput.AddMusic(music.title, music.author,  music.genre, music.duration);
         this.dbMusic.addMusic(input);
