@@ -49,7 +49,21 @@ public class DbMusic implements Music {
 
     @Override
     public List<MusicJpaEntity> getMusicByField(String field, String value) {
-
         return this.musicRepositoryBuilder.findByField(field, value);
+    }
+
+    @Override
+    public void setMusicById(String id, MusicInput.SetMusic music) {
+        Optional<MusicJpaEntity> optionalMusic = this.musicRepository.findById(UUID.fromString(id));
+
+        if (optionalMusic.isEmpty()) return;
+
+        MusicJpaEntity newMusic = optionalMusic.get();
+        newMusic.setTitle(music.getTitle());
+        newMusic.setAuthor(music.getAuthor());
+        newMusic.setDuration(music.getDuration());
+        newMusic.setGenre(music.getGenre());
+
+        this.musicRepository.save(newMusic);
     }
 }

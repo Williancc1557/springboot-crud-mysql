@@ -12,4 +12,13 @@ public class MusicInput {
         private String genre;
         private String duration;
     }
+
+    @AllArgsConstructor
+    @Getter
+    public static class SetMusic {
+        private String title;
+        private String author;
+        private String genre;
+        private String duration;
+    }
 }

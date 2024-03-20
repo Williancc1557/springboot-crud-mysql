@@ -1,6 +1,7 @@
 package com.api.user.controller;
 
 import com.api.user.dto.AddMusicDto;
+import com.api.user.dto.EditMusicByIdDto;
 import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
 import com.api.user.model.usecase.music.Music;
 import com.api.user.model.usecase.music.MusicInput;
@@ -39,5 +40,11 @@ public class MusicController {
     @RequestMapping("/field/{field}/{value}")
     List<MusicJpaEntity> getMusicByField(@PathVariable String field, @PathVariable String value) {
         return this.dbMusic.getMusicByField(field, value);
+    }
+
+    @PutMapping("/{id}")
+    void editMusicById(@PathVariable String id, @RequestBody() EditMusicByIdDto music ) {
+        MusicInput.SetMusic setMusicData = new MusicInput.SetMusic(music.title, music.author, music.genre, music.duration);
+        this.dbMusic.setMusicById(id, setMusicData);
     }
 }
