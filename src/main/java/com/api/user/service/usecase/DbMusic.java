@@ -1,14 +1,21 @@
 package com.api.user.service.usecase;
 
 import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
+import com.api.user.infra.database.mysql.repositories.MysqlMusicRepository;
 import com.api.user.model.usecase.music.Music;
 import com.api.user.model.usecase.music.MusicInput;
-import com.api.user.service.protocols.MusicRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DbMusic implements Music {
-    private MusicRepository musicRepository;
+    private final MysqlMusicRepository musicRepository;
+
+    @Autowired
+    public DbMusic(MysqlMusicRepository musicRepository) {
+        this.musicRepository = musicRepository;
+    }
+
 
     @Override
     public void addMusic(MusicInput.AddMusic music) {
@@ -18,6 +25,12 @@ public class DbMusic implements Music {
         musicJpaEntity.setDuration(music.getDuration());
         musicJpaEntity.setGenre(music.getGenre());
 
-        this.musicRepository.addMusic(musicJpaEntity);
+        System.out.println("teste1");
+        System.out.println(music.getAuthor());
+        System.out.println(music.getTitle());
+        System.out.println(music.getGenre());
+        System.out.println(music.getDuration());
+
+        this.musicRepository.save(musicJpaEntity);
     }
 }

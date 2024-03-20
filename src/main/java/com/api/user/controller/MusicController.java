@@ -6,9 +6,11 @@ import com.api.user.model.usecase.music.MusicInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/music")
+@RestController
+@RequestMapping("/music")
 public class MusicController {
     private final Music dbMusic;
 
@@ -17,7 +19,7 @@ public class MusicController {
         this.dbMusic = dbMusic;
     }
 
-    @PostMapping()
+    @PostMapping
     void addMusic(@RequestBody() AddMusicDto music) {
         MusicInput.AddMusic input = new MusicInput.AddMusic(music.title, music.author,  music.genre, music.duration);
         this.dbMusic.addMusic(input);
