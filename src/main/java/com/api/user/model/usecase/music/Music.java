@@ -10,4 +10,5 @@ public interface Music {
     MusicJpaEntity getMusicById(String id);
     List<MusicJpaEntity> getMusicByField(String field, String value);
     void setMusicById(String id, MusicInput.SetMusic music);
+    void deleteById(String id);
 }

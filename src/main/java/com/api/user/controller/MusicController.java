@@ -47,4 +47,9 @@ public class MusicController {
         MusicInput.SetMusic setMusicData = new MusicInput.SetMusic(music.title, music.author, music.genre, music.duration);
         this.dbMusic.setMusicById(id, setMusicData);
     }
+
+    @DeleteMapping("/{id}")
+    void deleteMusicById(@PathVariable String id) {
+        this.dbMusic.deleteById(id);
+    }
 }

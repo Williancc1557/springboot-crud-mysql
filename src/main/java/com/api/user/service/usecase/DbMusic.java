@@ -66,4 +66,9 @@ public class DbMusic implements Music {
 
         this.musicRepository.save(newMusic);
     }
+
+    @Override
+    public void deleteById(String id) {
+        this.musicRepository.deleteById(UUID.fromString(id));
+    }
 }
