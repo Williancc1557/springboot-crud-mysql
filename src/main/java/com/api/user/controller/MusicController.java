@@ -35,4 +35,9 @@ public class MusicController {
     MusicJpaEntity getMusicById(@PathVariable String musicId) {
         return this.dbMusic.getMusicById(musicId);
     }
+
+    @RequestMapping("/field/{field}/{value}")
+    List<MusicJpaEntity> getMusicByField(@PathVariable String field, @PathVariable String value) {
+        return this.dbMusic.getMusicByField(field, value);
+    }
 }

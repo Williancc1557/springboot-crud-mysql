@@ -2,6 +2,7 @@ package com.api.user.service.usecase;
 
 import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
 import com.api.user.infra.database.mysql.repositories.MysqlMusicRepository;
+import com.api.user.infra.database.mysql.repositories.MysqlMusicRepositoryBuilder;
 import com.api.user.model.usecase.music.Music;
 import com.api.user.model.usecase.music.MusicInput;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ import java.util.UUID;
 @Component
 public class DbMusic implements Music {
     private final MysqlMusicRepository musicRepository;
+    private final MysqlMusicRepositoryBuilder musicRepositoryBuilder;
 
     @Autowired
-    public DbMusic(MysqlMusicRepository musicRepository) {
+    public DbMusic(MysqlMusicRepository musicRepository, MysqlMusicRepositoryBuilder musicRepositoryBuilder) {
         this.musicRepository = musicRepository;
+        this.musicRepositoryBuilder = musicRepositoryBuilder;
     }
 
 
@@ -42,5 +45,11 @@ public class DbMusic implements Music {
         UUID uuidConverted = UUID.fromString((id));
         Optional<MusicJpaEntity> musicOptional = this.musicRepository.findById(uuidConverted);
         return musicOptional.orElse(null);
+    }
+
+    @Override
+    public List<MusicJpaEntity> getMusicByField(String field, String value) {
+
+        return this.musicRepositoryBuilder.findByField(field, value);
     }
 }
