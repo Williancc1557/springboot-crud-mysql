@@ -7,6 +7,8 @@ import com.api.user.model.usecase.music.MusicInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class DbMusic implements Music {
     private final MysqlMusicRepository musicRepository;
@@ -25,12 +27,11 @@ public class DbMusic implements Music {
         musicJpaEntity.setDuration(music.getDuration());
         musicJpaEntity.setGenre(music.getGenre());
 
-        System.out.println("teste1");
-        System.out.println(music.getAuthor());
-        System.out.println(music.getTitle());
-        System.out.println(music.getGenre());
-        System.out.println(music.getDuration());
-
         this.musicRepository.save(musicJpaEntity);
+    }
+
+    @Override
+    public List<MusicJpaEntity> getAllMusics() {
+        return this.musicRepository.findAll();
     }
 }

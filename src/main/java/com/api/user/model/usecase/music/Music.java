@@ -1,5 +1,10 @@
 package com.api.user.model.usecase.music;
 
+import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
+
+import java.util.List;
+
 public interface Music {
     void addMusic(MusicInput.AddMusic music);
+    List<MusicJpaEntity> getAllMusics();
 }
