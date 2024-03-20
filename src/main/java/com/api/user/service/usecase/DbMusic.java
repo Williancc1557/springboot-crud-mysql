@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class DbMusic implements Music {
@@ -33,5 +35,12 @@ public class DbMusic implements Music {
     @Override
     public List<MusicJpaEntity> getAllMusics() {
         return this.musicRepository.findAll();
+    }
+
+    @Override
+    public MusicJpaEntity getMusicById(String id) {
+        UUID uuidConverted = UUID.fromString((id));
+        Optional<MusicJpaEntity> musicOptional = this.musicRepository.findById(uuidConverted);
+        return musicOptional.orElse(null);
     }
 }

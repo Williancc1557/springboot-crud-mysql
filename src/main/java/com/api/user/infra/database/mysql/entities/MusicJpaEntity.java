@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
 
 
 @Setter
@@ -12,8 +15,8 @@ import lombok.Setter;
 @Table(name = "musics")
 public class MusicJpaEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @UuidGenerator(style = UuidGenerator.Style.TIME)
+    private UUID id;
 
     private String title;
     private String author;

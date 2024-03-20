@@ -7,4 +7,5 @@ import java.util.List;
 public interface Music {
     void addMusic(MusicInput.AddMusic music);
     List<MusicJpaEntity> getAllMusics();
+    MusicJpaEntity getMusicById(String id);
 }

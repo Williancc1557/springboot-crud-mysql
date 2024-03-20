@@ -4,11 +4,9 @@ import com.api.user.dto.AddMusicDto;
 import com.api.user.infra.database.mysql.entities.MusicJpaEntity;
 import com.api.user.model.usecase.music.Music;
 import com.api.user.model.usecase.music.MusicInput;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +29,10 @@ public class MusicController {
     @RequestMapping
     List<MusicJpaEntity> getMusic() {
         return this.dbMusic.getAllMusics();
+    }
+
+    @RequestMapping("/{musicId}")
+    MusicJpaEntity getMusicById(@PathVariable String musicId) {
+        return this.dbMusic.getMusicById(musicId);
     }
 }
